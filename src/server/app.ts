@@ -19,6 +19,11 @@ app.use("/api/*", async (context, next) => {
   await next();
 });
 app.use("/api/*", authenticate);
+app.use("/api/*", async (context, next) => {
+  const missing = (["OPENAI_API_KEY", "SPEECHIFY_API_KEY"] as const).filter((key) => !context.env[key]?.trim());
+  if (missing.length) fail(503, `Set ${missing.join(" and ")} in .dev.vars or your Cloudflare Worker secrets.`);
+  await next();
+});
 app.get("/api/health", async (context) => {
   await context.env.DB.prepare("SELECT COUNT(*) AS count FROM users").first();
   return context.json({ status: "ok", database: "connected", scheduler: { algorithm: "FSRS-6", desiredRetention: scheduler.parameters.request_retention } });

@@ -1,10 +1,5 @@
 # Use the default local profile or choose another ID to keep progress separate.
 DEV_LEARNER_ID=local
-USE_ADVANCED_MODELS=true
+
 OPENAI_API_KEY=
 SPEECHIFY_API_KEY=
-GOOGLE_TTS_API_KEY=
-
-# With USE_ADVANCED_MODELS=false, use Workers AI for text and Google for audio.
-CLOUDFLARE_ACCOUNT_ID=
-CLOUDFLARE_AI_TOKEN=
