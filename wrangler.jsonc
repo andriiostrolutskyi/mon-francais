@@ -1,0 +1,32 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "mon-francais",
+	"main": "src/server/app.ts",
+	"compatibility_date": "2026-10-28",
+	"send_metrics": false,
+	"workers_dev": true,
+	"preview_urls": false,
+	"vars": {
+		"USE_ADVANCED_MODELS": "true"
+	},
+	"assets": {
+		"not_found_handling": "single-page-application",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "mon-francais",
+			"database_id": "00000000-0000-0000-0000-000000000000",
+			"migrations_dir": "migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "AUDIO",
+			"bucket_name": "mon-francais-audio"
+		}
+	]
+}
